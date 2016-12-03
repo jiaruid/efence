@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/dujr/stargitrepo/EFence/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable/indicator_bg_top.xml",
+        "source": "/Users/dujr/stargitrepo/EFence/pulltorefresh/build/intermediates/bundles/debug/res/drawable/indicator_bg_top.xml"
+    },
+    {
+        "merged": "/Users/dujr/stargitrepo/EFence/pulltorefresh/build/intermediates/res/merged/androidTest/debug/drawable/indicator_bg_bottom.xml",
+        "source": "/Users/dujr/stargitrepo/EFence/pulltorefresh/build/intermediates/bundles/debug/res/drawable/indicator_bg_bottom.xml"
+    }
+]

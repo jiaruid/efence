@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoadingTextView">
+        <item name="textStyle">vertical</item>
+        <item name="textColor">@color/gray_text</item>
+        <item name="textSize">12sp</item>
+        <item name="textPadding">5dp</item>
+        <item name="android:text">@string/loading_text_default</item>
+    </style>
+
+    <style name="LoadingTextView_Percent" parent="LoadingTextView">
+        <item name="textPadding">10dp</item>
+        <item name="textSize">15sp</item>
+        <item name="android:text" />
+    </style>
+
+    <style name="TitleBar_Dark">
+        <item name="textColor">@android:color/white</item>
+        <item name="background">@color/dark_bg_70p</item>
+        <item name="backButton">@drawable/message_back_selector</item>
+    </style>
+</resources>

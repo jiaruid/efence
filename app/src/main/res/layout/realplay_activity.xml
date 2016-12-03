@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/realplay_page_ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#EEEEEE"
+    android:orientation="vertical">
+
+    <com.videogo.widget.TitleBar
+        android:id="@+id/title_bar_portrait"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:id="@+id/realplay_play_rl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@android:color/black">
+
+        <SurfaceView
+            android:id="@+id/realplay_sv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="false"
+            android:background="@android:color/transparent" />
+
+        <include layout="@layout/realplay_loading_layout" />
+        <include layout="@layout/realplay_control" />
+        <include layout="@layout/realplay_prompt_layout" />
+    </RelativeLayout>
+
+</LinearLayout>
