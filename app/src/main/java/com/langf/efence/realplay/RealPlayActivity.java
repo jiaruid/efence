@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -128,7 +129,7 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
         mRealPlayQualityBtn = (Button) findViewById(R.id.realplay_quality_btn);
         mFullscreenButton = (CheckTextButton) findViewById(R.id.fullscreen_button);
 
-        mScreenOrientationHelper = new ScreenOrientationHelper(this, mFullscreenButton, null);
+        mScreenOrientationHelper = new ScreenOrientationHelper(this, mFullscreenButton, mFullScreenTitleBarBackBtn);
         setOnTouchListener();
     }
 
@@ -168,7 +169,7 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onSingleClick() {
-//                onRealPlaySvClick();
+                onRealPlaySvClick();
             }
 
             @Override
@@ -267,6 +268,11 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         // 获取配置信息操作对象
         mLocalInfo = LocalInfo.getInstance();
+        // 获取屏幕参数
+        DisplayMetrics metric = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metric);
+        mLocalInfo.setScreenWidthHeight(metric.widthPixels, metric.heightPixels);
+        mLocalInfo.setNavigationBarHeight((int) Math.ceil(25 * getResources().getDisplayMetrics().density));
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -275,6 +281,8 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
             mRtspUrl = intent.getStringExtra(IntentConsts.EXTRA_RTSP_URL);
             if (mCameraInfo != null) {
                 mCurrentQulityMode = (mCameraInfo.getVideoLevel());
+                mPortraitTitleBar.setTitle(mCameraInfo.getCameraName());
+                mLandscapeTitleBar.setTitle(mCameraInfo.getCameraName());
             }
             Logger.d("rtspUrl:" + mRtspUrl);
 
@@ -441,6 +449,11 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
+        if (mEZPlayer != null) {
+            mEZPlayer.release();
+
+        }
         mScreenOrientationHelper = null;
     }
 
@@ -485,9 +498,9 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
             mPortraitTitleBar.setVisibility(View.GONE);
             // hide the
             mRealPlayControlRl.setVisibility(View.GONE);
-//            if (!mIsOnTalk && !mIsOnPtz) {
-//                mLandscapeTitleBar.setVisibility(View.VISIBLE);
-//            }
+            if (!mIsOnTalk && !mIsOnPtz) {
+                mLandscapeTitleBar.setVisibility(View.VISIBLE);
+            }
 //            if (mRtspUrl == null) {
 //                mRealPlayOperateBar.setVisibility(View.GONE);
 //                mRealPlayPageLy.setBackgroundColor(getResources().getColor(R.color.black_bg));
@@ -548,6 +561,56 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
             attr.flags &= (~WindowManager.LayoutParams.FLAG_FULLSCREEN);
             getWindow().setAttributes(attr);
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        }
+    }
+
+    private void onRealPlaySvClick() {
+        if (mCameraInfo != null && mEZPlayer != null && mDeviceInfo != null) {
+            if (mDeviceInfo.getStatus() != 1) {
+                return;
+            }
+            if (mOrientation == Configuration.ORIENTATION_PORTRAIT) {
+                setRealPlayControlRlVisibility();
+            } else {
+                setRealPlayFullOperateBarVisibility();
+            }
+        } else if (mRtspUrl != null) {
+            setRealPlayControlRlVisibility();
+        }
+    }
+
+    private void setRealPlayControlRlVisibility() {
+        if (mLandscapeTitleBar.getVisibility() == View.VISIBLE || mRealPlayControlRl.getVisibility() == View.VISIBLE) {
+            //            mRealPlayControlRl.setVisibility(View.GONE);
+            mLandscapeTitleBar.setVisibility(View.GONE);
+//            closeQualityPopupWindow();
+        } else {
+            mRealPlayControlRl.setVisibility(View.VISIBLE);
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                if (!mIsOnTalk && !mIsOnPtz) {
+                    mLandscapeTitleBar.setVisibility(View.VISIBLE);
+                }
+            } else {
+                mLandscapeTitleBar.setVisibility(View.GONE);
+            }
+            mControlDisplaySec = 0;
+        }
+    }
+
+    private void setRealPlayFullOperateBarVisibility() {
+        if (mLandscapeTitleBar.getVisibility() == View.VISIBLE) {
+//            mRealPlayFullOperateBar.setVisibility(View.GONE);
+            if (!mIsOnTalk && !mIsOnPtz) {
+//                mFullscreenFullButton.setVisibility(View.GONE);
+            }
+            mLandscapeTitleBar.setVisibility(View.GONE);
+        } else {
+            if (!mIsOnTalk && !mIsOnPtz) {
+                //mj mRealPlayFullOperateBar.setVisibility(View.VISIBLE);
+                //                mFullscreenFullButton.setVisibility(View.VISIBLE);
+                mLandscapeTitleBar.setVisibility(View.VISIBLE);
+            }
+            mControlDisplaySec = 0;
         }
     }
 
