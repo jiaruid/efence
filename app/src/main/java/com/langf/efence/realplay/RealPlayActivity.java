@@ -113,7 +113,7 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    protected void findView() {
+    protected void findViews() {
         initTitleBar();
         initLoadingUI();
 
@@ -900,6 +900,9 @@ public class RealPlayActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public boolean handleMessage(Message msg) {
+        if(this.isFinishing()){
+            return false;
+        }
         switch (msg.what) {
             case EZConstants.EZRealPlayConstants.MSG_GET_CAMERA_INFO_SUCCESS:
                 updateLoadingProgress(20);

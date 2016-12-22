@@ -13,4 +13,27 @@
     <string name="quality_hd">高清</string>
     <string name="quality_balanced">均衡</string>
     <string name="quality_flunet">流畅</string>
+
+    <string name="scan_cue_txt">设备二维码</string>
+
+    <string name="open_camera_fail">打开相机失败，请选择手动输入添加设备</string>
+    <string name="unable_identify_two_dimensional_code_tip">无法识别二维码，你可以点击屏幕\n右上角的按钮手动输入</string>
+    <string name="query_camera_fail_network_exception">查询失败，网络不给力</string>
+    <string name="serial_number_is_null">序列号不能为空</string>
+    <string name="serial_add_hint">请输入设备9位序列号</string>
+    <string name="serial_number_error">序列号错误</string>
+    <string name="scan_title_txt">序列号扫描</string>
+
+    <string name="refresh">重试</string>
+    <string name="next_button_txt">下一步</string>
+    <string name="probe_not_support_tip">不支持序列号添加探测器哦～</string>
+    <string name="scan_network_unavailible">尚未连接好网络</string>
+    <string name="scan_connet_network">连接网络</string>
+    <string name="unbind_to_bind">解绑添加</string>
+    <string name="promptUserToActivate">非萤石设备请先激活设备 &gt;&gt;</string>
+    <string name="scan_add">添加</string>
+    <string name="please_connect_the_power">添加时，请确保你的设备已连接好电源</string>
+    <string name="no_result_text">没有查询到结果</string>
+    <string name="querying_camera_text">正在查询设备信息，请稍等...</string>
+
 </resources>

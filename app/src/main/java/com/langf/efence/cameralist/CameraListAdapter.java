@@ -1,4 +1,4 @@
-package com.langf.efence.camera;
+package com.langf.efence.cameralist;
 
 
 import android.content.Context;

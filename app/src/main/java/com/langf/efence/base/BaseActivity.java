@@ -12,11 +12,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getContentView());
-        findView();
+        findViews();
         init();
     }
 
     protected abstract int getContentView();
-    protected abstract void findView();
+    protected abstract void findViews();
     protected abstract void init();
 }

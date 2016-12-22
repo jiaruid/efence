@@ -1,4 +1,4 @@
-package com.langf.efence.camera;
+package com.langf.efence.cameralist;
 
 import com.videogo.openapi.bean.EZCameraInfo;
 import com.videogo.openapi.bean.EZDeviceInfo;

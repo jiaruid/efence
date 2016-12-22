@@ -8,8 +8,11 @@ import android.widget.TextView;
 
 import com.langf.efence.R;
 import com.langf.efence.base.BaseActivity;
-import com.langf.efence.camera.CameraFragment;
+import com.langf.efence.cameralist.CameraFragment;
+import com.langf.efence.devicelist.scan.CaptureActivity;
+import com.langf.efence.utils.ActivityUtil;
 import com.langf.efence.widget.NoScrollViewPager;
+import com.videogo.widget.TitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +34,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     @Override
-    protected void findView() {
+    protected void findViews() {
         vpHomeContainer = (NoScrollViewPager) findViewById(R.id.vp_home_container);
         LinearLayout llCameraTab = (LinearLayout) findViewById(R.id.ll_home_tab_camera);
         LinearLayout llMeTab = (LinearLayout) findViewById(R.id.ll_home_tab_me);
@@ -40,6 +43,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
         tvTabCamera = (TextView) findViewById(R.id.tv_tab_camera);
         tvTabMe = (TextView) findViewById(R.id.tv_tab_me);
+
+        TitleBar titleBar = (TitleBar) findViewById(R.id.tb_home);
+        titleBar.addRightButton(R.drawable.my_add, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtil.getInstance(HomeActivity.this).startActivity(CaptureActivity.class);
+            }
+        });
     }
 
     @Override

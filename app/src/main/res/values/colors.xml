@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="gray_text">#adadad</color>
+    <color name="black_text">#333333</color>
 
     <color name="common_bg">#f0f0f3</color>
     <color name="common_line">#c8c7cc</color>
@@ -15,4 +16,27 @@
 
     <color name="grey_cover">#88676767</color>
     <color name="dark_bg_70p">#bb000000</color>
+
+    <!-- 画的线框的颜色 -->
+    <color name="line_color">#bebdbc</color>
+
+    <!-- 基础颜色 -->
+    <color name="transparent">#00ffffff</color>
+    <color name="gray">#c8c8c8</color>
+    <color name="white">#ffffff</color>
+
+    <!-- scan color -->
+    <color name="viewfinder_frame">#929292</color>
+    <color name="viewfinder_laser">#fe5600</color>
+    <color name="viewfinder_mask">#000000</color>
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+
+    <color name="setting_hint_text">#adadad</color>
+
+    <!-- wifi一键配置 -->
+    <color name="auto_wifi_red">#fe4343</color>
+    <color name="auto_wifi_blue">#40a2ee</color>
+    <color name="auto_tip_text">#888888</color>
+    <color name="auto_blue_text">#2554bd</color>
 </resources>
